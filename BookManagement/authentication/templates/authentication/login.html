@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %} Login {% endblock %}
+
+{% block content %}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4 border-0 rounded" style="width: 380px;">
+        <h2 class="text-center text-primary">Login</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <div class="d-grid gap-2 mt-3">
+                <button type="submit" class="btn btn-success">Login</button>
+                <a href="{% url 'book_list' %}" class="btn btn-outline-danger">Cancel</a>
+            </div>
+        </form>
+
+        <div class="text-center mt-3">
+            <p class="mb-0">Don't have an account?</p>
+            <a href="{% url 'registration' %}" class="text-decoration-none fw-bold text-primary">Register here</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
