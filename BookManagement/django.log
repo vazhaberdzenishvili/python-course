@@ -1,0 +1,13 @@
+[WARNING  2025-02-24 19:32:38,328] views: Filtering: Title - None, Genre - None
+[INFO  2025-02-24 19:32:38,359] views: Book Count: 4
+[INFO  2025-02-24 19:32:38,399] response_timer: Request to / took 0:00:00.071619 seconds
+[INFO  2025-02-24 19:32:38,662] response_timer: Request to /favicon.ico took 0:00:00.011440 seconds
+[INFO  2025-02-24 19:32:41,845] views: Accessed Book detail: Harry Poter, ID=6
+[INFO  2025-02-24 19:32:41,855] response_timer: Request to /book/6/ took 0:00:00.033092 seconds
+[INFO  2025-02-24 19:32:43,983] views: Accessed 'Update Book' page - Book ID: 6
+[INFO  2025-02-24 19:32:44,055] response_timer: Request to /book/update/6/ took 0:00:00.072324 seconds
+[INFO  2025-02-24 19:32:47,524] views: Accessed 'Update Book' page - Book ID: 6
+[INFO  2025-02-24 19:32:47,558] views: Updated book: Title=Harry Poter, ID=6
+[INFO  2025-02-24 19:32:47,559] response_timer: Request to /book/update/6/ took 0:00:00.035741 seconds
+[INFO  2025-02-24 19:32:47,614] views: Accessed Book detail: Harry Poter, ID=6
+[INFO  2025-02-24 19:32:47,624] response_timer: Request to /book/6/ took 0:00:00.044817 seconds
