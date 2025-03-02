@@ -3,20 +3,30 @@
 {% block title %} 📚 Books {% endblock %}
 
 {% block content %}
+{% include 'book/paginator.html' %}
 <div class="container mt-4">
     <div class="row row-cols-1 row-cols-md-3 g-4">
         {% for book in books %}
             <div class="col">
-                <div class="card h-100 shadow-lg border-0 rounded">
-                    {% if book.cover_image %}
-                        <img src="{{ book.cover_image.url }}" class="card-img-top img-fluid rounded-top" alt="{{ book.title }}">
-                    {% endif %}
+                <div class="card h-100 shadow-lg border-0 rounded p-3">
+                    <h5 class="card-title text-primary fw-bold text-center mt-3 mb-3">
+                        {{ book.title }}
+                    </h5>
+
+                    <div class="col-md-12 text-center">
+                        {% if book.image %}
+                            <img src="{{ book.image.url }}" class="rounded shadow-sm"
+                                 alt="{{ book.title }}" style="width: 200px; height: 250px; object-fit: cover;">
+                        {% else %}
+                            <img src="https://purepng.com/public/uploads/large/purepng.com-booksbookillustratedwrittenprintedliteratureclipart-1421526451843dou0k.png"
+                                 class="rounded shadow-sm" alt="No Image"
+                                 style="width: 200px; height: 250px; object-fit: cover;">
+                        {% endif %}
+                    </div>
+
+                    <hr class="mb-3">
 
                     <div class="card-body">
-                        <h5 class="card-title text-primary fw-bold text-center mt-3 mb-3">
-                            {{ book.title }}
-                        </h5>
-                        <hr class="mb-3">
                         <p class="card-text"><strong>✍️ Author:</strong> {{ book.author }}</p>
                         <p class="card-text"><strong>🎭 Genre:</strong> {{ book.genre }}</p>
                         <p class="card-text"><strong>📅 Year:</strong> {{ book.published_year }}</p>

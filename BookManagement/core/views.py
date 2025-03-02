@@ -4,6 +4,7 @@ from .forms import BookForm
 from .permissions import has_book_add_permission, has_book_delete_permission
 from django.db.models import Q
 import logging
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
 logger = logging.getLogger(__name__)
 
@@ -32,6 +33,16 @@ def book_list(request):
 
     logger.info(f"Book Count: {books.count()}")
 
+    paginator = Paginator(books, 2)
+
+    try:
+        page = request.GET.get('page')
+        books = paginator.page(page)
+    except PageNotAnInteger:
+        books = paginator.page(1)
+    except EmptyPage:
+        books = paginator.page(paginator.num_pages)
+
     return render(request, 'book/book_list.html', {'books': books})
 
 
@@ -49,7 +60,7 @@ def add_book(request):
     logger.info("Accessed 'Add Book' page")
 
     if request.method == 'POST':
-        form = BookForm(request.POST)
+        form = BookForm(request.POST, request.FILES)
 
         if form.is_valid():
             book = form.save()
@@ -67,8 +78,8 @@ def update_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
 
     if request.method == 'POST':
-        form = BookForm(request.POST, instance=book)
-
+        form = BookForm(request.POST, request.FILES, instance=book)
+        print(request.FILES)
         if form.is_valid():
             book = form.save()
             logger.info(f"Updated book: Title={book.title}, ID={book.id}")

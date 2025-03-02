@@ -3,44 +3,60 @@
 {% block title %} {{ book.title }} - Book Detail {% endblock %}
 
 {% block content %}
-<div class="container mt-5 d-flex justify-content-center">
-    <div class="col-md-8">
-        <div class="card shadow-sm border-0 p-4">
-            <div class="card-body">
-                <h2 class="card-title text-primary mb-3">{{ book.title }}</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card shadow-lg border-0 rounded p-4">
+                <div class="row align-items-center">
 
-                <hr class="mb-4">
+                    <div class="col-md-5 text-center border-end">
+                        {% if book.image %}
+                            <img src="{{ book.image.url }}"
+                                class="img-fluid rounded shadow-sm"
+                                style="width: 100%; max-height: 300px; object-fit: contain;"
+                                alt="{{ book.title }}">
+                        {% else %}
+                            <img src="https://purepng.com/public/uploads/large/purepng.com-booksbookillustratedwrittenprintedliteratureclipart-1421526451843dou0k.png"
+                                class="img-fluid rounded shadow-sm"
+                                style="width: 100%; max-height: 300px; oobject-fit: contain;"
+                                alt="No Image">
+                        {% endif %}
+                    </div>
 
-                <p class="card-text mb-2"><strong>📖 Author:</strong> {{ book.author }}</p>
-                <p class="card-text mb-2"><strong>📚 Category:</strong> {{ book.category.name }}</p>
-                <p class="card-text mb-2"><strong>🎭 Genre:</strong> {{ book.genre }}</p>
-                <p class="card-text mb-3"><strong>📅 Published Year:</strong> {{ book.published_year }}</p>
+                    <div class="col-md-7">
+                        <div class="card-body">
+                            <h2 class="card-title text-primary mb-3">{{ book.title }}</h2>
+                            <hr class="mb-3">
 
-                <div class="mt-4 text-start">
-                    <h5 class="text-secondary">📜 Description:</h5>
-                    <p class="mt-2">{{ book.description }}</p>
+                            <p class="card-text"><strong>✍️ Author:</strong> {{ book.author }}</p>
+                            <p class="card-text"><strong>📚 Category:</strong> {{ book.category.name }}</p>
+                            <p class="card-text"><strong>🎭 Genre:</strong> {{ book.genre }}</p>
+                            <p class="card-text"><strong>📅 Published Year:</strong> {{ book.published_year }}</p>
+
+                            <div class="mt-4">
+                                <h5 class="text-secondary">📜 Description:</h5>
+                                <p class="mt-2 text-muted">{{ book.description }}</p>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
+            </div>
+
+            <div class="d-flex justify-content-center gap-3 mt-4">
+                <a href="{% url 'book_list' %}" class="btn btn-outline-primary">
+                    <i class="bi bi-arrow-left"></i> Back to List
+                </a>
+                <a href="{% url 'update_book' book.pk %}" class="btn btn-warning">
+                    ✏️ Edit
+                </a>
+                {% if perms.core.delete_book %}
+                    <a href="{% url 'delete_book' book.pk %}" class="btn btn-danger">
+                        🗑 Delete
+                    </a>
+                {% endif %}
             </div>
         </div>
     </div>
 </div>
-
-<div class="container mt-5 d-flex justify-content-center">
-    <div class="d-flex w-40 justify-content-center gap-4">
-        <a href="{% url 'book_list' %}" class="btn btn-outline-primary px-4 py-2">
-            <i class="bi bi-arrow-left"></i> Back to List
-        </a>
-        <a href="{% url 'update_book' book.pk %}" class="btn btn-outline-warning">
-            ✏️ Edit Book
-        </a>
-        {% if perms.core.delete_book %}
-            <a href="{% url 'delete_book' book.pk %}" class="btn btn-outline-danger px-4 py-2">
-                <i class="bi bi-trash"></i> Delete
-            </a>
-        {% endif %}
-    </div>
-</div>
-
-
-
 {% endblock %}

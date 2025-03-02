@@ -26,6 +26,7 @@ class Book(models.Model):
     genre = models.CharField(max_length=20, choices=GENRES, blank=True)
     published_year = models.IntegerField(null=True)
     description = models.TextField()
+    image = models.ImageField(upload_to='book_images/', null=True, blank=True)
 
     def __str__(self):
         return f"{self.title} by {self.author}"
