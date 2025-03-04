@@ -21,11 +21,19 @@
           <input class="form-control me-2" type="search" placeholder="🔍 Search by genre" name="search_by_genre">
           <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
+
         <ul class="navbar-nav ms-3 ms-auto mb-2 mb-lg-0">
           {% if user.is_authenticated %}
-            <li class="nav-item d-flex align-items-center">
-              <span class="nav-link text-light fw-bold fs-6 me-3">👤 {{ user }}</span>
-              <a class="btn btn-outline-danger" href="{% url 'logout' %}">🚪 Logout</a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle text-light fw-bold" href="#" id="userDropdown" role="button"
+                 data-bs-toggle="dropdown" aria-expanded="false">
+                👤 {{ user }}
+              </a>
+              <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                <li><a class="dropdown-item" href="{% url 'password_change' %}">🔑 Change Password</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item text-danger" href="{% url 'logout' %}">🚪 Logout</a></li>
+              </ul>
             </li>
           {% else %}
             <li class="nav-item">

@@ -20,3 +20,30 @@
 [INFO  2025-03-02 11:38:16,151] views: Accessed Book detail: sherlock holmes2, ID=9
 [INFO  2025-03-02 11:38:16,161] response_timer: Request to /book/9/ took 0:00:00.030005 seconds
 [INFO  2025-03-02 11:40:13,275] views: Accessed Book detail: sherlock holmes2, ID=9
+[WARNING  2025-03-04 16:16:21,963] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-04 16:16:21,990] views: Book Count: 8
+[INFO  2025-03-04 16:16:22,037] response_timer: Request to / took 0:00:00.074573 seconds
+[INFO  2025-03-04 16:16:23,108] response_timer: Request to /favicon.ico took 0:00:00.012758 seconds
+[WARNING  2025-03-04 16:16:25,664] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-04 16:16:25,693] views: Book Count: 8
+[INFO  2025-03-04 16:16:25,706] response_timer: Request to / took 0:00:00.041896 seconds
+[INFO  2025-03-04 16:16:25,812] response_timer: Request to /media/book_images/sherlock_holmes.jpeg took 0:00:00.029796 seconds
+[WARNING  2025-03-04 16:16:26,914] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-04 16:16:26,938] views: Book Count: 8
+[INFO  2025-03-04 16:16:26,950] response_timer: Request to / took 0:00:00.036495 seconds
+[WARNING  2025-03-04 16:16:27,981] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-04 16:16:28,001] views: Book Count: 8
+[INFO  2025-03-04 16:16:28,015] response_timer: Request to / took 0:00:00.034447 seconds
+[WARNING  2025-03-04 16:16:55,816] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-04 16:16:55,846] views: Book Count: 8
+[INFO  2025-03-04 16:16:55,901] response_timer: Request to / took 0:00:00.084954 seconds
+[WARNING  2025-03-04 16:16:56,851] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-04 16:16:56,871] views: Book Count: 8
+[INFO  2025-03-04 16:16:56,881] response_timer: Request to / took 0:00:00.030122 seconds
+[WARNING  2025-03-04 16:16:57,641] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-04 16:16:57,662] views: Book Count: 8
+[INFO  2025-03-04 16:16:57,677] response_timer: Request to / took 0:00:00.036380 seconds
+[WARNING  2025-03-04 16:16:58,512] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-04 16:16:58,536] views: Book Count: 8
+[INFO  2025-03-04 16:16:58,553] response_timer: Request to / took 0:00:00.041373 seconds
+[INFO  2025-03-04 16:17:01,238] views: Accessed Book detail: Harry Potter, ID=11

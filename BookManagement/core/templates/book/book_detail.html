@@ -18,7 +18,7 @@
                         {% else %}
                             <img src="https://purepng.com/public/uploads/large/purepng.com-booksbookillustratedwrittenprintedliteratureclipart-1421526451843dou0k.png"
                                 class="img-fluid rounded shadow-sm"
-                                style="width: 100%; max-height: 300px; oobject-fit: contain;"
+                                style="width: 100%; max-height: 300px; object-fit: contain;"
                                 alt="No Image">
                         {% endif %}
                     </div>
@@ -32,6 +32,7 @@
                             <p class="card-text"><strong>📚 Category:</strong> {{ book.category.name }}</p>
                             <p class="card-text"><strong>🎭 Genre:</strong> {{ book.genre }}</p>
                             <p class="card-text"><strong>📅 Published Year:</strong> {{ book.published_year }}</p>
+                            <p class="card-text"><strong>📦 Stock:</strong> {{ book.stock }}</p>
 
                             <div class="mt-4">
                                 <h5 class="text-secondary">📜 Description:</h5>
@@ -55,6 +56,9 @@
                         🗑 Delete
                     </a>
                 {% endif %}
+                <a href="{% url 'buy_book' book.id %}" class="btn btn-warning">
+                    🛒 Buy Now
+                </a>
             </div>
         </div>
     </div>

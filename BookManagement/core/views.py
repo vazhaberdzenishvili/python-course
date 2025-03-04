@@ -1,10 +1,13 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Book
+from .models import Book, BookCart
 from .forms import BookForm
 from .permissions import has_book_add_permission, has_book_delete_permission
 from django.db.models import Q
 import logging
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
+from django.core.mail import send_mail
+from django.conf import settings
 
 logger = logging.getLogger(__name__)
 
@@ -31,9 +34,7 @@ def book_list(request):
     else:
         books = Book.objects.all()
 
-    logger.info(f"Book Count: {books.count()}")
-
-    paginator = Paginator(books, 2)
+    paginator = Paginator(books, 3)
 
     try:
         page = request.GET.get('page')
@@ -97,5 +98,37 @@ def delete_book(request, pk):
     book = get_object_or_404(Book, pk=pk)
     book.delete()
     logger.info(f"Deleted book - Book ID: {pk}")
+
+    return redirect('book_list')
+
+
+def buy_book(request, pk):
+    book = get_object_or_404(Book, pk=pk)
+
+    if book.is_sold_out():
+        messages.error(request, 'Book not available')
+        return redirect('book_list')
+
+    item = BookCart.objects.filter(
+        book=book, user=request.user).first()
+
+    if item:
+        messages.error(
+            request, 'You have already added this book to your cart')
+    else:
+        book_cart = BookCart.objects.create(
+            book=book, user=request.user, book_count=1)
+        book.book_count -= 1
+        book.save()
+        messages.success(
+            request, f'Successfully added {book.title} to your cart!')
+
+    send_mail(
+        'Book Purchase Confirmation',
+        f'{request.user.username} has successfully added book: {book.title} by {book.author} to their cart.',
+        settings.DEFAULT_FROM_EMAIL,
+        [request.user.email],
+        fail_silently=False
+    )
 
     return redirect('book_list')
