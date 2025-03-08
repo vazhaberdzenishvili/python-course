@@ -13,7 +13,7 @@
             {{ form|crispy }}
             <div class="d-grid gap-3 mt-4">
                 <button type="submit" class="btn btn-success py-2">✅ Add Book</button>
-                <a href="{% url 'book_list' %}" class="btn btn-outline-danger py-2">❌ Cancel</a>
+                <a href="{% url 'core:book_list' %}" class="btn btn-outline-danger py-2">❌ Cancel</a>
             </div>
         </form>
     </div>

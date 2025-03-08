@@ -45,20 +45,23 @@
             </div>
 
             <div class="d-flex justify-content-center gap-3 mt-4">
-                <a href="{% url 'book_list' %}" class="btn btn-outline-primary">
+                <a href="{% url 'core:book_list' %}" class="btn btn-outline-primary">
                     <i class="bi bi-arrow-left"></i> Back to List
                 </a>
-                <a href="{% url 'update_book' book.pk %}" class="btn btn-warning">
+                <a href="{% url 'core:update_book' book.pk %}" class="btn btn-warning">
                     ✏️ Edit
                 </a>
                 {% if perms.core.delete_book %}
-                    <a href="{% url 'delete_book' book.pk %}" class="btn btn-danger">
+                    <a href="{% url 'core:delete_book' book.pk %}" class="btn btn-danger">
                         🗑 Delete
                     </a>
                 {% endif %}
-                <a href="{% url 'buy_book' book.id %}" class="btn btn-warning">
-                    🛒 Buy Now
-                </a>
+                <form action="{% url 'core:buy_book' pk=book.id %}" method="post">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-warning">
+                        🛒 Buy Now
+                    </button>
+                </form>
             </div>
         </div>
     </div>

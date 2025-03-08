@@ -14,19 +14,19 @@
 
             <div class="d-grid gap-2 mt-3">
                 <button type="submit" class="btn btn-success">Login</button>
-                <a href="{% url 'book_list' %}" class="btn btn-outline-danger">Cancel</a>
+                <a href="{% url 'core:book_list' %}" class="btn btn-outline-danger">Cancel</a>
             </div>
         </form>
 
         <div class="text-center mt-3">
-            <a href="{% url 'password_reset' %}" class="text-decoration-none fw-bold text-warning">
+            <a href="{% url 'authentication:password_reset' %}" class="text-decoration-none fw-bold text-warning">
                 🔁 Forgot Password?
             </a>
         </div>
 
         <div class="text-center mt-3">
             <p class="mb-0">Don't have an account?</p>
-            <a href="{% url 'registration' %}" class="text-decoration-none fw-bold text-primary">Register here</a>
+            <a href="{% url 'authentication:registration' %}" class="text-decoration-none fw-bold text-primary">Register here</a>
         </div>
     </div>
 </div>

@@ -1,134 +1,114 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import redirect, get_object_or_404
 from .models import Book, BookCart
 from .forms import BookForm
-from .permissions import has_book_add_permission, has_book_delete_permission
 from django.db.models import Q
 import logging
-from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
 from django.core.mail import send_mail
 from django.conf import settings
+from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.views import View
 
 logger = logging.getLogger(__name__)
 
 
-def book_list(request):
-    title_query = request.GET.get('search_by_title')
-    genre_query = request.GET.get('search_by_genre')
+class BookListView(ListView):
+    model = Book
+    template_name = 'book/book_list.html'
+    context_object_name = 'books'
+    paginate_by = 3
 
-    logger.warning(f"Filtering: Title - {title_query}, Genre - {genre_query}")
-    filters = Q()
+    def get_queryset(self):
 
-    if title_query:
-        filters |= Q(title__icontains=title_query)
+        title_query = self.request.GET.get('search_by_title')
+        genre_query = self.request.GET.get('search_by_genre')
 
-    if genre_query:
-        filters |= Q(genre__icontains=genre_query)
+        logger.warning(
+            f"Filtering: Title - {title_query}, Genre - {genre_query}")
+        filters = Q()
 
-    if title_query and genre_query:
-        filters &= Q(title__icontains=title_query) & Q(
-            genre__icontains=genre_query)
+        if title_query:
+            filters |= Q(title__icontains=title_query)
 
-    if filters:
-        books = Book.objects.filter(filters)
-    else:
-        books = Book.objects.all()
+        if genre_query:
+            filters |= Q(genre__icontains=genre_query)
 
-    paginator = Paginator(books, 3)
+        if title_query and genre_query:
+            filters &= Q(title__icontains=title_query) & Q(
+                genre__icontains=genre_query)
 
-    try:
-        page = request.GET.get('page')
-        books = paginator.page(page)
-    except PageNotAnInteger:
-        books = paginator.page(1)
-    except EmptyPage:
-        books = paginator.page(paginator.num_pages)
-
-    return render(request, 'book/book_list.html', {'books': books})
+        if filters:
+            books = Book.objects.filter(filters).order_by("title")
+        else:
+            books = Book.objects.all().order_by("title")
+        return books
 
 
-def book_detail(request, pk):
-    book = get_object_or_404(Book, pk=pk)
-
-    logger.info(f"Accessed Book detail: {book.title}, ID={pk}")
-
-    return render(request, 'book/book_detail.html', {'book': book})
+class BookDetailView(DetailView):
+    model = Book
+    context_object_name = 'book'
+    template_name = 'book/book_detail.html'
 
 
-@has_book_add_permission
-def add_book(request):
+class CreateBookView(CreateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'book/add_book.html'
+    success_url = reverse_lazy('core:book_list')
 
-    logger.info("Accessed 'Add Book' page")
+    def form_valid(self, form):
+        Book = form.save()
+        return redirect(self.success_url)
 
-    if request.method == 'POST':
-        form = BookForm(request.POST, request.FILES)
-
-        if form.is_valid():
-            book = form.save()
-            logger.info(f"Added book: Title={book.title}, ID={book.id}")
-
-            return redirect('book_list')
-    else:
-        form = BookForm()
-
-    return render(request, 'book/add_book.html', {'form': form})
+    def form_invalid(self, form):
+        return self.render_to_response(self.get_context_data(form=form))
 
 
-def update_book(request, pk):
-    logger.info(f"Accessed 'Update Book' page - Book ID: {pk}")
-    book = get_object_or_404(Book, pk=pk)
+class BookUpdateView(UpdateView):
+    model = Book
+    form_class = BookForm
+    template_name = 'book/update_book.html'
 
-    if request.method == 'POST':
-        form = BookForm(request.POST, request.FILES, instance=book)
-        print(request.FILES)
-        if form.is_valid():
-            book = form.save()
-            logger.info(f"Updated book: Title={book.title}, ID={book.id}")
-            return redirect('book_detail', pk=pk)
-    else:
-        form = BookForm(instance=book)
-
-    return render(request, 'book/update_book.html', {'form': form, 'book': book})
+    def get_success_url(self):
+        success_url = reverse_lazy('core:book_detail', kwargs={
+                                   'pk': self.object.pk})
+        return success_url
 
 
-@has_book_delete_permission
-def delete_book(request, pk):
-    logger.info(f"Attempting to delete book - Book ID: {pk}")
-
-    book = get_object_or_404(Book, pk=pk)
-    book.delete()
-    logger.info(f"Deleted book - Book ID: {pk}")
-
-    return redirect('book_list')
+class BookDeleteView(DeleteView):
+    model = Book
+    template_name = 'book/confirm_delete.html'
+    success_url = reverse_lazy('core:book_list')
 
 
-def buy_book(request, pk):
-    book = get_object_or_404(Book, pk=pk)
+class BookPurchaseView(View):
+    def post(self, request, pk):
+        book = get_object_or_404(Book, pk=pk)
 
-    if book.is_sold_out():
-        messages.error(request, 'Book not available')
-        return redirect('book_list')
+        if book.is_sold_out():
+            messages.error(request, 'Book not available')
+            return redirect('core:book_list')
 
-    item = BookCart.objects.filter(
-        book=book, user=request.user).first()
+        item = BookCart.objects.filter(book=book, user=request.user).first()
 
-    if item:
-        messages.error(
-            request, 'You have already added this book to your cart')
-    else:
-        book_cart = BookCart.objects.create(
-            book=book, user=request.user, book_count=1)
-        book.book_count -= 1
-        book.save()
-        messages.success(
-            request, f'Successfully added {book.title} to your cart!')
+        if item:
+            messages.error(
+                request, 'You have already added this book to your cart')
+        else:
+            book_cart = BookCart.objects.create(
+                book=book, user=request.user, book_count=1)
+            book.book_count -= 1
+            book.save()
+            messages.success(
+                request, f'Successfully added {book.title} to your cart!')
 
-    send_mail(
-        'Book Purchase Confirmation',
-        f'{request.user.username} has successfully added book: {book.title} by {book.author} to their cart.',
-        settings.DEFAULT_FROM_EMAIL,
-        [request.user.email],
-        fail_silently=False
-    )
+        send_mail(
+            'Book Purchase Confirmation',
+            f'{request.user.username} has successfully added book: {book.title} by {book.author} to their cart.',
+            settings.DEFAULT_FROM_EMAIL,
+            [request.user.email],
+            fail_silently=False
+        )
 
-    return redirect('book_list')
+        return redirect('core:book_list')
