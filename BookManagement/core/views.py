@@ -9,6 +9,8 @@ from django.conf import settings
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from django.views import View
+from .mixins import AddBookMixin, UpdateBookMixin, DeleteBookMixin
+from django.contrib.auth.mixins import LoginRequiredMixin
 
 logger = logging.getLogger(__name__)
 
@@ -51,11 +53,12 @@ class BookDetailView(DetailView):
     template_name = 'book/book_detail.html'
 
 
-class CreateBookView(CreateView):
+class CreateBookView(AddBookMixin, CreateView):
     model = Book
     form_class = BookForm
     template_name = 'book/add_book.html'
     success_url = reverse_lazy('core:book_list')
+    login_url = reverse_lazy('login')
 
     def form_valid(self, form):
         Book = form.save()
@@ -65,10 +68,11 @@ class CreateBookView(CreateView):
         return self.render_to_response(self.get_context_data(form=form))
 
 
-class BookUpdateView(UpdateView):
+class BookUpdateView(UpdateBookMixin, UpdateView):
     model = Book
     form_class = BookForm
     template_name = 'book/update_book.html'
+    login_url = reverse_lazy('login')
 
     def get_success_url(self):
         success_url = reverse_lazy('core:book_detail', kwargs={
@@ -76,13 +80,14 @@ class BookUpdateView(UpdateView):
         return success_url
 
 
-class BookDeleteView(DeleteView):
+class BookDeleteView(DeleteBookMixin, DeleteView):
     model = Book
     template_name = 'book/confirm_delete.html'
     success_url = reverse_lazy('core:book_list')
+    login_url = reverse_lazy('login')
 
 
-class BookPurchaseView(View):
+class BookPurchaseView(LoginRequiredMixin, View):
     def post(self, request, pk):
         book = get_object_or_404(Book, pk=pk)
 

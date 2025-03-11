@@ -19,3 +19,78 @@
 [INFO  2025-03-02 11:37:53,407] response_timer: Request to /book/add/ took 0:00:00.085919 seconds
 [INFO  2025-03-02 11:38:16,151] views: Accessed Book detail: sherlock holmes2, ID=9
 [INFO  2025-03-02 11:38:16,161] response_timer: Request to /book/9/ took 0:00:00.030005 seconds
+[INFO  2025-03-11 16:38:30,289] response_timer: Request to / took 0:00:00.045736 seconds
+[INFO  2025-03-11 16:38:30,709] response_timer: Request to /favicon.ico took 0:00:00.013811 seconds
+[INFO  2025-03-11 16:40:48,324] response_timer: Request to / took 0:00:00.029446 seconds
+[INFO  2025-03-11 16:40:49,967] response_timer: Request to / took 0:00:00.029406 seconds
+[INFO  2025-03-11 16:40:51,141] response_timer: Request to / took 0:00:00.034153 seconds
+[INFO  2025-03-11 16:40:51,375] response_timer: Request to /favicon.ico took 0:00:00.027101 seconds
+[INFO  2025-03-11 16:41:49,403] response_timer: Request to / took 0:00:00.033681 seconds
+[INFO  2025-03-11 16:41:50,277] response_timer: Request to / took 0:00:00.036839 seconds
+[WARNING  2025-03-11 16:44:27,683] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:44:27,769] response_timer: Request to / took 0:00:00.085709 seconds
+[WARNING  2025-03-11 16:44:34,237] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:44:34,282] response_timer: Request to / took 0:00:00.044399 seconds
+[INFO  2025-03-11 16:44:37,718] response_timer: Request to /book/15/ took 0:00:00.043218 seconds
+[INFO  2025-03-11 16:44:39,499] response_timer: Request to /book/update/15/ took 0:00:00.032312 seconds
+[INFO  2025-03-11 16:44:45,554] response_timer: Request to /logout/ took 0:00:00.037499 seconds
+[WARNING  2025-03-11 16:44:45,563] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:44:45,599] response_timer: Request to / took 0:00:00.035895 seconds
+[INFO  2025-03-11 16:44:46,892] response_timer: Request to /login/ took 0:00:00.035681 seconds
+[INFO  2025-03-11 16:44:51,161] response_timer: Request to /login/ took 0:00:00.853921 seconds
+[WARNING  2025-03-11 16:44:51,172] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:44:51,210] response_timer: Request to / took 0:00:00.037859 seconds
+[INFO  2025-03-11 16:44:52,728] response_timer: Request to /book/add/ took 0:00:00.051005 seconds
+[WARNING  2025-03-11 16:44:56,922] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:44:56,958] response_timer: Request to / took 0:00:00.035808 seconds
+[INFO  2025-03-11 16:44:59,088] response_timer: Request to /book/15/ took 0:00:00.028125 seconds
+[INFO  2025-03-11 16:45:00,507] response_timer: Request to /book/update/15/ took 0:00:00.047842 seconds
+[INFO  2025-03-11 16:45:03,521] response_timer: Request to /logout/ took 0:00:00.033330 seconds
+[WARNING  2025-03-11 16:45:03,529] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:45:03,568] response_timer: Request to / took 0:00:00.038788 seconds
+[INFO  2025-03-11 16:45:05,412] response_timer: Request to /login/ took 0:00:00.007301 seconds
+[INFO  2025-03-11 16:45:15,240] response_timer: Request to /login/ took 0:00:00.854025 seconds
+[INFO  2025-03-11 16:45:22,199] response_timer: Request to /login/ took 0:00:00.813905 seconds
+[INFO  2025-03-11 16:45:28,928] response_timer: Request to /login/ took 0:00:00.832777 seconds
+[INFO  2025-03-11 16:45:30,744] response_timer: Request to /password_reset/ took 0:00:00.006529 seconds
+[INFO  2025-03-11 16:45:39,780] response_timer: Request to /admin/login/ took 0:00:00.032119 seconds
+[INFO  2025-03-11 16:45:43,347] response_timer: Request to /admin/login/ took 0:00:00.849217 seconds
+[INFO  2025-03-11 16:45:43,430] response_timer: Request to /admin/ took 0:00:00.071422 seconds
+[INFO  2025-03-11 16:45:45,371] response_timer: Request to /admin/auth/user/ took 0:00:00.078728 seconds
+[INFO  2025-03-11 16:45:45,609] response_timer: Request to /admin/jsi18n/ took 0:00:00.040814 seconds
+[INFO  2025-03-11 16:45:48,926] response_timer: Request to /admin/auth/user/1/change/ took 0:00:00.112508 seconds
+[INFO  2025-03-11 16:45:49,161] response_timer: Request to /admin/jsi18n/ took 0:00:00.053788 seconds
+[INFO  2025-03-11 16:45:50,902] response_timer: Request to /admin/auth/user/1/password/ took 0:00:00.074919 seconds
+[INFO  2025-03-11 16:45:56,867] response_timer: Request to /admin/auth/user/1/password/ took 0:00:00.043899 seconds
+[INFO  2025-03-11 16:46:05,703] response_timer: Request to /admin/auth/user/1/password/ took 0:00:00.858884 seconds
+[INFO  2025-03-11 16:46:05,842] response_timer: Request to /admin/auth/user/1/change/ took 0:00:00.126823 seconds
+[INFO  2025-03-11 16:46:06,065] response_timer: Request to /admin/jsi18n/ took 0:00:00.030873 seconds
+[INFO  2025-03-11 16:46:07,322] response_timer: Request to /admin/logout/ took 0:00:00.033772 seconds
+[WARNING  2025-03-11 16:46:09,272] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:46:09,300] response_timer: Request to / took 0:00:00.028810 seconds
+[INFO  2025-03-11 16:46:10,932] response_timer: Request to /login/ took 0:00:00.007688 seconds
+[INFO  2025-03-11 16:46:20,371] response_timer: Request to /login/ took 0:00:00.879986 seconds
+[INFO  2025-03-11 16:46:31,643] response_timer: Request to /login/ took 0:00:00.838593 seconds
+[WARNING  2025-03-11 16:46:31,654] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:46:31,708] response_timer: Request to / took 0:00:00.054181 seconds
+[INFO  2025-03-11 16:46:34,722] response_timer: Request to /book/15/ took 0:00:00.040250 seconds
+[WARNING  2025-03-11 16:46:41,949] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 16:46:41,994] response_timer: Request to / took 0:00:00.045314 seconds
+[INFO  2025-03-11 16:46:44,414] response_timer: Request to /book/15/ took 0:00:00.034986 seconds
+[INFO  2025-03-11 16:46:47,518] response_timer: Request to /book/15/delete took 0:00:00.009923 seconds
+[INFO  2025-03-11 16:46:55,883] response_timer: Request to /15/delete took 0:00:00.008705 seconds
+[INFO  2025-03-11 16:47:08,802] response_timer: Request to /book/delete/15/ took 0:00:00.030995 seconds
+[INFO  2025-03-11 16:49:22,513] response_timer: Request to /book/change/15/ took 0:00:00.012632 seconds
+[INFO  2025-03-11 16:49:33,784] response_timer: Request to /book/update/15/ took 0:00:00.031562 seconds
+[WARNING  2025-03-11 17:06:00,683] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 17:06:00,795] response_timer: Request to / took 0:00:00.119628 seconds
+[INFO  2025-03-11 17:06:02,848] response_timer: Request to /logout/ took 0:00:00.059943 seconds
+[WARNING  2025-03-11 17:06:03,276] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-11 17:06:03,312] response_timer: Request to / took 0:00:00.035891 seconds
+[INFO  2025-03-11 17:06:08,345] response_timer: Request to /admin/login/ took 0:00:00.030062 seconds
+[INFO  2025-03-11 17:38:18,116] response_timer: Request to /admin/login/ took 0:00:00.922027 seconds
+[INFO  2025-03-11 17:38:18,188] response_timer: Request to /admin/ took 0:00:00.062461 seconds
+[INFO  2025-03-11 17:38:24,120] response_timer: Request to /admin/auth/group/ took 0:00:00.063587 seconds
+[INFO  2025-03-11 17:38:24,274] response_timer: Request to /admin/jsi18n/ took 0:00:00.065070 seconds
+[INFO  2025-03-11 17:38:27,955] response_timer: Request to /admin/auth/group/2/change/ took 0:00:00.076870 seconds
+[INFO  2025-03-11 17:38:28,076] response_timer: Request to /admin/jsi18n/ took 0:00:00.067180 seconds
