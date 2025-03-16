@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_bootstrap5',
     'authentication',
+    'rest_framework',
+    'drf_yasg',
 
 ]
 
