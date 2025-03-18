@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'authentication',
     'rest_framework',
     'drf_yasg',
+    'django_filters',
 
 ]
 
@@ -188,5 +189,10 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'email'
 EMAIL_HOST_PASSWORD = 'password'
 DEFAULT_FROM_EMAIL = 'email'
+
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 3
+}
 
 LOGIN_REDIRECT_URL = '/'

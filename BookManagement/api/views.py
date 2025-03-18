@@ -7,12 +7,29 @@ from rest_framework.generics import get_object_or_404
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 from rest_framework.parsers import MultiPartParser, FormParser
+from .filters import BookFilter
+from rest_framework.pagination import PageNumberPagination
+
+
+class CustomPagination(PageNumberPagination):
+    page_size = 3
+    page_query_param = 'page'
+    page_size_query_param = 'page_size'
+    max_page_size = 10
 
 
 @swagger_auto_schema(
     method='GET',
     operation_summary='Get book Details',
     operation_description='This endpoint will return book Details',
+    manual_parameters=[
+        openapi.Parameter('page', openapi.IN_QUERY, type=openapi.TYPE_INTEGER),
+        openapi.Parameter('page_size', openapi.IN_QUERY,
+                          type=openapi.TYPE_INTEGER),
+        openapi.Parameter('title', openapi.IN_QUERY, type=openapi.TYPE_STRING),
+        openapi.Parameter('author', openapi.IN_QUERY,
+                          type=openapi.TYPE_STRING),
+    ],
     responses={
         status.HTTP_200_OK: BookSerializer,
         status.HTTP_400_BAD_REQUEST: openapi.Response(
@@ -22,9 +39,26 @@ from rest_framework.parsers import MultiPartParser, FormParser
 )
 @api_view(['GET'])
 def book_list(request):
-    books = Book.objects.all()
-    serializer = BookSerializer(books, many=True)
-    return Response(serializer.data, status=status.HTTP_200_OK)
+    books = Book.objects.order_by('id')
+
+    filterset = BookFilter(request.query_params, queryset=books)
+
+    if filterset.is_valid():
+        books = filterset.qs
+
+    paginator = CustomPagination()
+    paginated_queryset = paginator.paginate_queryset(books, request)
+
+    serializer = BookSerializer(paginated_queryset, many=True)
+
+    result = {
+        'count': paginator.page.paginator.count,
+        'next': paginator.get_next_link(),
+        'previous': paginator.get_previous_link(),
+        'results': serializer.data,
+    }
+
+    return Response(result, status=status.HTTP_200_OK)
 
 
 @swagger_auto_schema(

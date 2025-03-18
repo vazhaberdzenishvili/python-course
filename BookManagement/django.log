@@ -14,3 +14,11 @@
 [WARNING  2025-03-02 11:37:49,078] views: Filtering: Title - None, Genre - None
 [INFO  2025-03-02 11:37:49,111] views: Book Count: 4
 [INFO  2025-03-02 11:37:49,154] response_timer: Request to / took 0:00:00.076643 seconds
+[WARNING  2025-03-18 12:46:40,352] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-18 12:46:40,407] response_timer: Request to / took 0:00:00.055889 seconds
+[INFO  2025-03-18 12:46:41,358] response_timer: Request to /favicon.ico took 0:00:00.013022 seconds
+[WARNING  2025-03-18 12:46:45,588] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-18 12:46:45,621] response_timer: Request to / took 0:00:00.032609 seconds
+[INFO  2025-03-18 12:46:45,755] response_timer: Request to /media/book_images/sherlock_holmes.jpeg took 0:00:00.008711 seconds
+[INFO  2025-03-18 13:04:02,504] response_timer: Request to /api/ took 0:00:00.033625 seconds
+[INFO  2025-03-18 13:04:12,489] response_timer: Request to /api/ took 0:00:00.037187 seconds
