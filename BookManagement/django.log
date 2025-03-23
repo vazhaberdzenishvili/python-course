@@ -22,3 +22,10 @@
 [INFO  2025-03-18 12:46:45,755] response_timer: Request to /media/book_images/sherlock_holmes.jpeg took 0:00:00.008711 seconds
 [INFO  2025-03-18 13:04:02,504] response_timer: Request to /api/ took 0:00:00.033625 seconds
 [INFO  2025-03-18 13:04:12,489] response_timer: Request to /api/ took 0:00:00.037187 seconds
+[WARNING  2025-03-23 19:05:00,992] views: Filtering: Title - None, Genre - None
+[INFO  2025-03-23 19:05:01,107] response_timer: Request to / took 0:00:00.115696 seconds
+[INFO  2025-03-23 19:05:01,964] response_timer: Request to /favicon.ico took 0:00:00.013574 seconds
+[INFO  2025-03-23 19:05:08,596] response_timer: Request to /docs/ took 0:00:00.038532 seconds
+[INFO  2025-03-23 19:05:09,501] response_timer: Request to /docs/ took 0:00:00.049555 seconds
+[INFO  2025-03-23 19:05:14,486] response_timer: Request to /api/ took 0:00:00.071343 seconds
+[INFO  2025-03-23 19:07:17,683] response_timer: Request to /api/ took 0:00:00.071263 seconds
